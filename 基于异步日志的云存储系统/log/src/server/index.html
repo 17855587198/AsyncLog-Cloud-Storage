@@ -123,6 +123,20 @@
             align-items: center;
         }
 
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
         .file-type {
             background: #eee;
             padding: 0.3rem 0.8rem;
@@ -208,6 +222,32 @@
 
         function downloadFile(fileId) {
             window.location = `${config.backendUrl}/download?id=${fileId}`;
+        }
+
+        async function deleteFile(fileUrl) {
+            if (!confirm('确定要删除这个文件吗？此操作不可恢复。')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${config.backendUrl}/delete`, {
+                    method: 'DELETE',
+                    headers: {
+                        'FileURL': fileUrl
+                    }
+                });
+
+                if (response.ok) {
+                    alert('文件删除成功');
+                    location.reload();
+                } else {
+                    const errorText = await response.text();
+                    alert(`删除失败: ${response.status} - ${errorText}`);
+                }
+            } catch (error) {
+                console.error('删除错误:', error);
+                alert('网络连接失败');
+            }
         }
     </script>
 </body>

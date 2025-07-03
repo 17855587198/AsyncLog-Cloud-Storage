@@ -23,7 +23,7 @@ namespace storage
         Service()
         {
 #ifdef DEBUG_LOG
-            mylog::GetLogger("asynclogger")->Debug("Service start(Construct)");//打印对应的调试信息
+            mylog::GetLogger("asynclogger")->Debug("Service start(Construct)");
 #endif
             server_port_ = Config::GetInstance()->GetServerPort();
             server_ip_ = Config::GetInstance()->GetServerIp();
@@ -36,7 +36,7 @@ namespace storage
         {
             // 初始化环境
             event_base *base = event_base_new();
-            if (base == NULL)//对于创建为空，需要打印对应的错误
+            if (base == NULL)
             {
                 mylog::GetLogger("asynclogger")->Fatal("event_base_new err!");
                 return false;
@@ -81,7 +81,6 @@ namespace storage
         std::string download_prefix_;
 
     private:
-      /*Http的请求分发器,根据请求的路径将请求路由到不同的处理函数*/
         static void GenHandler(struct evhttp_request *req, void *arg)
         {
             std::string path = evhttp_uri_get_path(evhttp_request_get_evhttp_uri(req));
@@ -99,6 +98,11 @@ namespace storage
             {
                 Upload(req, arg);
             }
+            // 这里是删除请求
+            else if (path == "/delete")
+            {
+                Delete(req, arg);
+            }
             // 这里就是显示已存储文件列表，返回一个html页面给浏览器
             else if (path == "/")
             {
@@ -109,8 +113,7 @@ namespace storage
                 evhttp_send_reply(req, HTTP_NOTFOUND, "Not Found", NULL);
             }
         }
-        
-        /*服务器接收客户端上传的文件并存储*/
+
         static void Upload(struct evhttp_request *req, void *arg)
         {
             mylog::GetLogger("asynclogger")->Info("Upload start");
@@ -212,6 +215,53 @@ namespace storage
             mylog::GetLogger("asynclogger")->Info("upload finish:success");
         }
 
+        static void Delete(struct evhttp_request *req, void *arg)
+        {
+            mylog::GetLogger("asynclogger")->Info("Delete start");
+            
+            // 获取要删除的文件URL
+            std::string file_url = evhttp_find_header(req->input_headers, "FileURL");
+            if (file_url.empty())
+            {
+                mylog::GetLogger("asynclogger")->Error("Delete: FileURL header missing");
+                evhttp_send_reply(req, HTTP_BADREQUEST, "FileURL header missing", NULL);
+                return;
+            }
+
+            // 获取文件信息
+            StorageInfo info;
+            if (!data_->GetOneByURL(file_url, &info))
+            {
+                mylog::GetLogger("asynclogger")->Error("Delete: file not found, url: %s", file_url.c_str());
+                evhttp_send_reply(req, HTTP_NOTFOUND, "File not found", NULL);
+                return;
+            }
+
+            // 删除物理文件
+            FileUtil fu(info.storage_path_);
+            if (fu.Exists())
+            {
+                if (remove(info.storage_path_.c_str()) != 0)
+                {
+                    mylog::GetLogger("asynclogger")->Error("Delete: failed to remove physical file: %s", info.storage_path_.c_str());
+                    evhttp_send_reply(req, HTTP_INTERNAL, "Failed to delete physical file", NULL);
+                    return;
+                }
+                mylog::GetLogger("asynclogger")->Info("Delete: physical file removed: %s", info.storage_path_.c_str());
+            }
+
+            // 从数据管理器中删除记录
+            if (!data_->Delete(file_url))
+            {
+                mylog::GetLogger("asynclogger")->Error("Delete: failed to remove from database, url: %s", file_url.c_str());
+                evhttp_send_reply(req, HTTP_INTERNAL, "Failed to remove from database", NULL);
+                return;
+            }
+
+            evhttp_send_reply(req, HTTP_OK, "File deleted successfully", NULL);
+            mylog::GetLogger("asynclogger")->Info("Delete finish: success, url: %s", file_url.c_str());
+        }
+
         static std::string TimetoStr(time_t t)
         {
             std::string tmp = std::ctime(&t);
@@ -245,7 +295,10 @@ namespace storage
                    << "<span>" << formatSize(file.fsize_) << "</span>"
                    << "<span>" << TimetoStr(file.mtime_) << "</span>"
                    << "</div>"
+                   << "<div class='file-actions'>"
                    << "<button onclick=\"window.location='" << file.url_ << "'\">⬇️ 下载</button>"
+                   << "<button class='delete-btn' onclick=\"deleteFile('" << file.url_ << "')\">🗑️ 删除</button>"
+                   << "</div>"
                    << "</div>";
             }
 

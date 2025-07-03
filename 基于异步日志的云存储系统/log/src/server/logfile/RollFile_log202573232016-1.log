@@ -1,0 +1,122 @@
+[22:19:15][135699536604032[INFO][asynclogger][DataManager.hpp:50]	DataManager construct start
+[22:19:15][135699536604032[INFO][asynclogger][Config.hpp:37]	ReadConfig start
+[22:19:15][135699536604032[INFO][asynclogger][Config.hpp:30]	ReadConfig complicate
+[22:19:15][135699536604032[INFO][asynclogger][DataManager.hpp:65]	init datamanager
+[22:19:15][135699536604032[INFO][asynclogger][DataManager.hpp:68]	there is no storage file info need to load
+[22:19:15][135699536604032[INFO][asynclogger][DataManager.hpp:56]	DataManager construct end
+[22:19:15][135699447490112[DEBUG][asynclogger][Service.hpp:26]	Service start(Construct)
+[22:19:15][135699447490112[DEBUG][asynclogger][Service.hpp:32]	Service end(Construct)
+[22:19:15][135699447490112[INFO][asynclogger][Test.cpp:17]	service step in RunModule
+[22:19:15][135699447490112[DEBUG][asynclogger][Service.hpp:64]	event_base_dispatch
+[22:19:27][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /
+[22:19:27][135699447490112[INFO][asynclogger][Service.hpp:328]	ListShow()
+[22:19:27][135699447490112[INFO][asynclogger][Service.hpp:355]	ListShow() finish
+[22:19:27][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /favicon.ico
+[22:20:05][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /
+[22:20:05][135699447490112[INFO][asynclogger][Service.hpp:328]	ListShow()
+[22:20:05][135699447490112[INFO][asynclogger][Service.hpp:355]	ListShow() finish
+[22:20:06][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /favicon.ico
+[22:20:25][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /upload
+[22:20:25][135699447490112[INFO][asynclogger][Service.hpp:119]	Upload start
+[22:20:25][135699447490112[INFO][asynclogger][Service.hpp:131]	evbuffer_get_length is 3818604
+[22:20:25][135699447490112[DEBUG][asynclogger][Service.hpp:177]	storage_path:./deep_storage/output_processed.mp4
+[22:20:26][135699447490112[INFO][asynclogger][Service.hpp:205]	deep_storage success
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:18]	NewStorageInfo start
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:33]	download_url:/download/output_processed.mp4,mtime_:Thu Jul  3 22:20:26 2025
+,atime_:Thu Jul  3 22:20:26 2025
+,fsize_:3691769
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:34]	NewStorageInfo end
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:133]	data_message Insert start
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:96]	message storage start
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:118]	new message for StorageInfo:
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:127]	message storage end
+[22:20:26][135699447490112[INFO][asynclogger][DataManager.hpp:142]	data_message Insert end
+[22:20:26][135699447490112[INFO][asynclogger][Service.hpp:215]	upload finish:success
+[22:20:26][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /upload
+[22:20:26][135699447490112[INFO][asynclogger][Service.hpp:119]	Upload start
+[22:20:26][135699447490112[INFO][asynclogger][Service.hpp:131]	evbuffer_get_length is 3818604
+[22:20:26][135699447490112[DEBUG][asynclogger][Service.hpp:177]	storage_path:./deep_storage/output_processed.mp4
+[22:20:28][135699447490112[INFO][asynclogger][Service.hpp:205]	deep_storage success
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:18]	NewStorageInfo start
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:33]	download_url:/download/output_processed.mp4,mtime_:Thu Jul  3 22:20:26 2025
+,atime_:Thu Jul  3 22:20:26 2025
+,fsize_:3691769
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:34]	NewStorageInfo end
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:133]	data_message Insert start
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:96]	message storage start
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:118]	new message for StorageInfo:
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:127]	message storage end
+[22:20:28][135699447490112[INFO][asynclogger][DataManager.hpp:142]	data_message Insert end
+[22:20:28][135699447490112[INFO][asynclogger][Service.hpp:215]	upload finish:success
+[22:20:28][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /
+[22:20:28][135699447490112[INFO][asynclogger][Service.hpp:328]	ListShow()
+[22:20:28][135699447490112[INFO][asynclogger][Service.hpp:355]	ListShow() finish
+[22:20:34][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /delete
+[22:20:34][135699447490112[INFO][asynclogger][Service.hpp:220]	Delete start
+[22:20:34][135699447490112[INFO][asynclogger][Service.hpp:250]	Delete: physical file removed: ./deep_storage/output_processed.mp4
+[22:20:34][135699447490112[INFO][asynclogger][DataManager.hpp:201]	data_message Delete start, url: /download/output_processed.mp4
+[22:20:34][135699447490112[INFO][asynclogger][DataManager.hpp:96]	message storage start
+[22:20:34][135699447490112[INFO][asynclogger][DataManager.hpp:118]	new message for StorageInfo:
+[22:20:34][135699447490112[INFO][asynclogger][DataManager.hpp:127]	message storage end
+[22:20:34][135699447490112[INFO][asynclogger][DataManager.hpp:223]	data_message Delete end, url: /download/output_processed.mp4
+[22:20:34][135699447490112[INFO][asynclogger][Service.hpp:262]	Delete finish: success, url: /download/output_processed.mp4
+[22:20:36][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /
+[22:20:36][135699447490112[INFO][asynclogger][Service.hpp:328]	ListShow()
+[22:20:36][135699447490112[INFO][asynclogger][Service.hpp:355]	ListShow() finish
+[22:23:33][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /upload
+[22:23:33][135699447490112[INFO][asynclogger][Service.hpp:119]	Upload start
+[22:23:33][135699447490112[INFO][asynclogger][Service.hpp:131]	evbuffer_get_length is 3818604
+[22:23:33][135699447490112[DEBUG][asynclogger][Service.hpp:177]	storage_path:./deep_storage/output_processed.mp4
+[22:23:34][135699447490112[INFO][asynclogger][Service.hpp:205]	deep_storage success
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:18]	NewStorageInfo start
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:33]	download_url:/download/output_processed.mp4,mtime_:Thu Jul  3 22:23:34 2025
+,atime_:Thu Jul  3 22:23:34 2025
+,fsize_:3691769
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:34]	NewStorageInfo end
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:133]	data_message Insert start
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:96]	message storage start
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:118]	new message for StorageInfo:
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:127]	message storage end
+[22:23:34][135699447490112[INFO][asynclogger][DataManager.hpp:142]	data_message Insert end
+[22:23:34][135699447490112[INFO][asynclogger][Service.hpp:215]	upload finish:success
+[22:23:34][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /
+[22:23:34][135699447490112[INFO][asynclogger][Service.hpp:328]	ListShow()
+[22:23:34][135699447490112[INFO][asynclogger][Service.hpp:355]	ListShow() finish
+[22:23:38][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /upload
+[22:23:38][135699447490112[INFO][asynclogger][Service.hpp:119]	Upload start
+[22:23:38][135699447490112[INFO][asynclogger][Service.hpp:131]	evbuffer_get_length is 3818604
+[22:23:38][135699447490112[DEBUG][asynclogger][Service.hpp:177]	storage_path:./deep_storage/output_processed.mp4
+[22:23:39][135699447490112[INFO][asynclogger][Service.hpp:205]	deep_storage success
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:18]	NewStorageInfo start
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:33]	download_url:/download/output_processed.mp4,mtime_:Thu Jul  3 22:23:34 2025
+,atime_:Thu Jul  3 22:23:34 2025
+,fsize_:3691769
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:34]	NewStorageInfo end
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:133]	data_message Insert start
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:96]	message storage start
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:118]	new message for StorageInfo:
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:127]	message storage end
+[22:23:39][135699447490112[INFO][asynclogger][DataManager.hpp:142]	data_message Insert end
+[22:23:39][135699447490112[INFO][asynclogger][Service.hpp:215]	upload finish:success
+[22:23:39][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /
+[22:23:39][135699447490112[INFO][asynclogger][Service.hpp:328]	ListShow()
+[22:23:39][135699447490112[INFO][asynclogger][Service.hpp:355]	ListShow() finish
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /upload
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:119]	Upload start
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:131]	evbuffer_get_length is 554
+[22:23:47][135699447490112[DEBUG][asynclogger][Service.hpp:177]	storage_path:./deep_storage/build.sh
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:205]	deep_storage success
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:18]	NewStorageInfo start
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:33]	download_url:/download/build.sh,mtime_:Thu Jul  3 22:23:47 2025
+,atime_:Thu Jul  3 22:23:47 2025
+,fsize_:302
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:34]	NewStorageInfo end
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:133]	data_message Insert start
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:96]	message storage start
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:118]	new message for StorageInfo:
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:127]	message storage end
+[22:23:47][135699447490112[INFO][asynclogger][DataManager.hpp:142]	data_message Insert end
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:215]	upload finish:success
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:88]	get req, uri: /
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:328]	ListShow()
+[22:23:47][135699447490112[INFO][asynclogger][Service.hpp:355]	ListShow() finish

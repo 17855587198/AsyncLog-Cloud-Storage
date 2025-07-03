@@ -194,5 +194,34 @@ namespace storage
             pthread_rwlock_unlock(&rwlock_);
             return true;
         }
+
+        // 添加删除功能
+        bool Delete(const std::string &url)
+        {
+            mylog::GetLogger("asynclogger")->Info("data_message Delete start, url: %s", url.c_str());
+            pthread_rwlock_wrlock(&rwlock_);
+            
+            // 检查文件是否存在
+            if (table_.find(url) == table_.end())
+            {
+                pthread_rwlock_unlock(&rwlock_);
+                mylog::GetLogger("asynclogger")->Warn("data_message Delete: file not found, url: %s", url.c_str());
+                return false;
+            }
+            
+            // 从表中删除记录
+            table_.erase(url);
+            pthread_rwlock_unlock(&rwlock_);
+            
+            // 持久化更改
+            if (Storage() == false)
+            {
+                mylog::GetLogger("asynclogger")->Error("data_message Delete: Storage Error");
+                return false;
+            }
+            
+            mylog::GetLogger("asynclogger")->Info("data_message Delete end, url: %s", url.c_str());
+            return true;
+        }
     }; // namespace DataManager
 }
