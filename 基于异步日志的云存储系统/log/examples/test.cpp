@@ -1,21 +1,35 @@
 #include "../logs_code/MyLog.hpp"
 #include "../logs_code/ThreadPoll.hpp"
 #include "../logs_code/Util.hpp"
+#include <chrono>
+#include <iostream>
 using std::cout;
 using std::endl;
 
 ThreadPool* tp=nullptr;
 mylog::Util::JsonData* g_conf_data;
 void test() {
-    int cur_size = 0;
-    int cnt = 1;
-    while (cur_size++ < 2) {
-        mylog::GetLogger("asynclogger")->Info("测试日志-%d", cnt++);
-        mylog::GetLogger("asynclogger")->Warn("测试日志-%d", cnt++);
-        mylog::GetLogger("asynclogger")->Debug("测试日志-%d", cnt++);
-        mylog::GetLogger("asynclogger")->Error("测试日志-%d", cnt++);
-        mylog::GetLogger("asynclogger")->Fatal("测试日志-%d", cnt++);
+    const int test_count = 10000;  // 增加测试数量
+    
+    std::cout << "开始性能测试，消息数量: " << test_count << std::endl;
+    
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    for (int i = 0; i < test_count; ++i) {
+        mylog::GetLogger("asynclogger")->Info("性能测试日志-%d", i);
+        
+        // 每1000条打印一次进度
+        if (i % 1000 == 0) {
+            std::cout << "已处理: " << i << " 条日志" << std::endl;
+        }
     }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    
+    std::cout << "性能测试完成!" << std::endl;
+    std::cout << "总耗时: " << duration.count() << " ms" << std::endl;
+    std::cout << "吞吐量: " << (test_count * 1000.0 / duration.count()) << " msg/s" << std::endl;
 }
 
 void init_thread_pool() {
